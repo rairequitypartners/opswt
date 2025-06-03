@@ -1,12 +1,21 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, CheckCircle, Code, Database, DollarSign, Users, Zap, Shield, BarChart3, Bot } from "lucide-react";
+import { ArrowRight, CheckCircle, Code, Database, DollarSign, Users, Zap, Shield, BarChart3, Bot, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Searching for:', searchQuery);
+    // TODO: Implement search functionality
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
       {/* Navigation */}
@@ -33,28 +42,55 @@ const Index = () => {
         <div className="max-w-7xl mx-auto text-center">
           <div className="mb-6">
             <Badge variant="secondary" className="px-4 py-2 text-sm">
-              One Control Plane to Deploy, Orchestrate, and Monetize AI Agents
+              Find the Perfect AI Agent for Your Startup
             </Badge>
           </div>
           <h1 className="text-5xl md:text-7xl font-bold text-slate-900 mb-6 leading-tight">
-            Run Your AI Agents Like
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"> Products</span>
+            Discover AI Agents
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"> That Solve</span>
             <br />
-            — Not Just Prompts
+            Your Business Problems
           </h1>
           <p className="text-xl text-slate-600 mb-10 max-w-3xl mx-auto leading-relaxed">
-            OpSweet lets you deploy, orchestrate, and monetize AI agents across every team in your business. 
-            One platform. All your agents. Fully managed.
+            Simply type what you're trying to solve and we'll serve up a curated list of AI tools, 
+            agents, and LLMs perfect for your startup's needs.
           </p>
+          
+          {/* Prominent Search Input */}
+          <div className="max-w-2xl mx-auto mb-10">
+            <form onSubmit={handleSearch} className="relative">
+              <div className="relative flex items-center">
+                <Search className="absolute left-4 h-6 w-6 text-slate-400" />
+                <Input
+                  type="text"
+                  placeholder="What problem are you trying to solve? (e.g., automate customer support, process invoices, handle payroll)"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-12 pr-24 py-6 text-lg rounded-full border-2 border-slate-200 focus:border-blue-500 shadow-lg"
+                />
+                <Button 
+                  type="submit" 
+                  className="absolute right-2 rounded-full px-6 py-2"
+                  disabled={!searchQuery.trim()}
+                >
+                  Search
+                </Button>
+              </div>
+            </form>
+            <p className="text-sm text-slate-500 mt-3">
+              Or browse popular searches: Customer Support • Payroll • Tax Compliance • Document Processing
+            </p>
+          </div>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="text-lg px-8 py-6" asChild>
               <Link to="/dashboard">
-                Launch Agent Platform
+                Explore Agent Directory
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
             <Button size="lg" variant="outline" className="text-lg px-8 py-6">
-              Schedule a Demo
+              Submit Your Agent
             </Button>
           </div>
         </div>
@@ -65,33 +101,33 @@ const Index = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-slate-900 mb-4">How It Works</h2>
-            <p className="text-xl text-slate-600">Four simple steps to agent mastery</p>
+            <p className="text-xl text-slate-600">Find and deploy the right AI agent in minutes</p>
           </div>
           <div className="grid md:grid-cols-4 gap-8">
             {[
               {
                 step: "01",
-                title: "Register Your Agent",
-                description: "Connect any agent — from LangChain, Replit, custom code, or third-party platforms. Define endpoint, auth, and expected behavior.",
-                icon: <Code className="h-8 w-8 text-blue-600" />
+                title: "Search Your Problem",
+                description: "Describe what you're trying to solve in plain English. Our AI understands your business needs and context.",
+                icon: <Search className="h-8 w-8 text-blue-600" />
               },
               {
                 step: "02", 
-                title: "Orchestrate Tasks",
-                description: "Send tasks from your app or dashboard. We handle routing, retries, and logging.",
-                icon: <Zap className="h-8 w-8 text-green-600" />
+                title: "Browse Curated Results",
+                description: "Get a personalized list of AI agents, tools, and LLMs ranked by relevance to your specific use case.",
+                icon: <Database className="h-8 w-8 text-green-600" />
               },
               {
                 step: "03",
-                title: "Track Outcomes", 
-                description: "Monitor what your agents did, when, and for whom. View inputs, outputs, success/failure, and time taken.",
+                title: "Compare & Evaluate", 
+                description: "See pricing, features, reviews, and integration options side-by-side to make informed decisions.",
                 icon: <BarChart3 className="h-8 w-8 text-orange-600" />
               },
               {
                 step: "04",
-                title: "Bill Based on Results",
-                description: "Monetize based on output, actions, or value delivered — not just compute or token count.",
-                icon: <DollarSign className="h-8 w-8 text-purple-600" />
+                title: "Deploy & Scale",
+                description: "Connect your chosen agent through our platform and monitor performance as you scale.",
+                icon: <Zap className="h-8 w-8 text-purple-600" />
               }
             ].map((item, index) => (
               <Card key={index} className="relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -170,39 +206,39 @@ await client.trackAgentRun({
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-slate-900 mb-4">Powerful Features</h2>
-            <p className="text-xl text-slate-600">Everything you need to manage AI agents at scale</p>
+            <p className="text-xl text-slate-600">Everything you need to discover and manage AI agents</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: "Agent Registry",
-                description: "Register any AI agent with a URL and config. Works with any stack.",
-                icon: <Database className="h-8 w-8 text-blue-600" />
+                title: "Smart Search",
+                description: "AI-powered search that understands business problems and matches them with the right agents.",
+                icon: <Search className="h-8 w-8 text-blue-600" />
               },
               {
-                title: "Central Task Router",
-                description: "Send tasks from any app. We'll handle retries, timeouts, and routing to the right agent.",
-                icon: <Zap className="h-8 w-8 text-green-600" />
+                title: "Curated Directory",
+                description: "Hand-picked AI agents, tools, and LLMs vetted for quality and effectiveness.",
+                icon: <Database className="h-8 w-8 text-green-600" />
               },
               {
-                title: "Usage Analytics",
-                description: "Visualize performance, usage, and outcomes. Filter by tag, time, agent, or workspace.",
+                title: "Performance Analytics",
+                description: "See real usage data, success rates, and user reviews for every agent in our directory.",
                 icon: <BarChart3 className="h-8 w-8 text-orange-600" />
               },
               {
-                title: "Billing Engine",
-                description: "Define billable actions. Integrate with Stripe or your invoicing tool.",
-                icon: <DollarSign className="h-8 w-8 text-purple-600" />
+                title: "Integration Support",
+                description: "Get help connecting agents to your existing stack with our integration guides.",
+                icon: <Code className="h-8 w-8 text-purple-600" />
               },
               {
-                title: "Secure Multi-Tenancy",
-                description: "Each client, workspace, or project stays isolated and permissioned.",
-                icon: <Shield className="h-8 w-8 text-red-600" />
+                title: "Pricing Transparency",
+                description: "Compare costs, billing models, and ROI estimates across different agents.",
+                icon: <DollarSign className="h-8 w-8 text-red-600" />
               },
               {
-                title: "SDK + API Access",
-                description: "One-liner integration with your stack. We handle tracking, reporting, and billing logic.",
-                icon: <Code className="h-8 w-8 text-indigo-600" />
+                title: "Expert Reviews",
+                description: "Detailed analysis and recommendations from our team of AI implementation experts.",
+                icon: <Users className="h-8 w-8 text-indigo-600" />
               }
             ].map((feature, index) => (
               <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -225,39 +261,39 @@ await client.trackAgentRun({
       <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">Use Cases</h2>
-            <p className="text-xl text-slate-600">See how teams use OpSweet to power their AI agents</p>
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">Popular Agent Categories</h2>
+            <p className="text-xl text-slate-600">Discover agents across these high-demand business areas</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: "Paichex Payroll Agent",
-                description: "Run payroll, deduct tax, generate payslips.",
+                title: "Payroll & HR Agents",
+                description: "Automate payroll processing, benefits administration, and employee onboarding.",
                 color: "bg-blue-100 text-blue-800"
               },
               {
-                title: "Tax Compliance Bot",
-                description: "Interpret local tax rules and submit calculations.",
+                title: "Tax Compliance Bots",
+                description: "Handle tax calculations, filing, and compliance across different jurisdictions.",
                 color: "bg-green-100 text-green-800"
               },
               {
-                title: "HR Onboarding Agent",
-                description: "Create offer letters, onboarding schedules, and verify documents.",
+                title: "Customer Support AI",
+                description: "Intelligent chatbots and support agents that resolve tickets automatically.",
                 color: "bg-purple-100 text-purple-800"
               },
               {
-                title: "Support Agent",
-                description: "Automatically resolve tickets or draft replies.",
+                title: "Document Processing",
+                description: "Extract and process data from invoices, contracts, and business documents.",
                 color: "bg-orange-100 text-orange-800"
               },
               {
-                title: "Sales Qualifier Agent",
-                description: "Score leads and route high-value ones to humans.",
+                title: "Sales & Lead Qualification",
+                description: "Score leads, qualify prospects, and automate sales follow-ups.",
                 color: "bg-red-100 text-red-800"
               },
               {
-                title: "Document Processor",
-                description: "Extract data from invoices, contracts, and forms.",
+                title: "Financial Analysis",
+                description: "Automated bookkeeping, expense tracking, and financial reporting agents.",
                 color: "bg-indigo-100 text-indigo-800"
               }
             ].map((useCase, index) => (
@@ -280,29 +316,29 @@ await client.trackAgentRun({
       <section className="py-20 px-6 bg-slate-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">Simple. Transparent. Outcome-Based.</h2>
-            <p className="text-xl text-slate-600">We charge based on value created — not tokens burned. Start free. Scale when your agents do.</p>
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">Simple. Transparent. Value-Driven.</h2>
+            <p className="text-xl text-slate-600">Find the right agents for free. Pay only when you're ready to deploy at scale.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {[
               {
-                name: "Starter",
+                name: "Explorer",
                 price: "Free",
-                description: "Solo developers, testing",
-                features: ["5 agents", "100 tasks/mo", "Basic dashboard", "Community support"]
+                description: "For discovery and testing",
+                features: ["Unlimited searches", "Agent comparisons", "Basic reviews", "Community support"]
               },
               {
-                name: "Growth",
+                name: "Startup",
                 price: "$49/mo",
-                description: "Small teams",
-                features: ["20 agents", "2000 tasks/mo", "API access", "Email support", "Advanced analytics"],
+                description: "For growing teams",
+                features: ["Priority support", "Custom recommendations", "Integration assistance", "Performance tracking", "Advanced analytics"],
                 popular: true
               },
               {
                 name: "Enterprise",
                 price: "Custom",
-                description: "AI-first businesses", 
-                features: ["Unlimited agents", "Custom limits", "SLA", "Priority support", "Audit compliance"]
+                description: "For scale deployment", 
+                features: ["Dedicated success manager", "Custom agent vetting", "White-label options", "SLA guarantees", "Direct vendor connections"]
               }
             ].map((plan, index) => (
               <Card key={index} className={`relative border-2 ${plan.popular ? 'border-blue-500 shadow-xl' : 'border-slate-200'}`}>
@@ -338,19 +374,19 @@ await client.trackAgentRun({
       {/* Final CTA */}
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-slate-900 mb-6">Build Your AgentOps Layer Today</h2>
+          <h2 className="text-4xl font-bold text-slate-900 mb-6">Start Discovering AI Agents Today</h2>
           <p className="text-xl text-slate-600 mb-10">
-            Whether you're deploying one agent or a hundred, OpSweet helps you scale with confidence.
+            Join thousands of startups who have found their perfect AI solutions through OpSweet.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="text-lg px-8 py-6" asChild>
               <Link to="/dashboard">
-                Get Early Access
+                Explore Agent Directory
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
             <Button size="lg" variant="outline" className="text-lg px-8 py-6">
-              Talk to Our Team
+              List Your Agent
             </Button>
           </div>
         </div>
