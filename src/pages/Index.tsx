@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, CheckCircle, Code, Database, DollarSign, Users, Zap, Shield, BarChart3, Bot } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   return (
@@ -19,7 +20,9 @@ const Index = () => {
             <div className="flex items-center space-x-4">
               <Button variant="ghost">Documentation</Button>
               <Button variant="ghost">Pricing</Button>
-              <Button>Get Started</Button>
+              <Button asChild>
+                <Link to="/dashboard">Get Started</Link>
+              </Button>
             </div>
           </div>
         </div>
@@ -44,9 +47,11 @@ const Index = () => {
             One platform. All your agents. Fully managed.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-lg px-8 py-6">
-              Launch Agent Platform
-              <ArrowRight className="ml-2 h-5 w-5" />
+            <Button size="lg" className="text-lg px-8 py-6" asChild>
+              <Link to="/dashboard">
+                Launch Agent Platform
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
             </Button>
             <Button size="lg" variant="outline" className="text-lg px-8 py-6">
               Schedule a Demo
@@ -338,9 +343,11 @@ await client.trackAgentRun({
             Whether you're deploying one agent or a hundred, OpSweet helps you scale with confidence.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-lg px-8 py-6">
-              Get Early Access
-              <ArrowRight className="ml-2 h-5 w-5" />
+            <Button size="lg" className="text-lg px-8 py-6" asChild>
+              <Link to="/dashboard">
+                Get Early Access
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
             </Button>
             <Button size="lg" variant="outline" className="text-lg px-8 py-6">
               Talk to Our Team
