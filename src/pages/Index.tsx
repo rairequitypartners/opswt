@@ -37,75 +37,76 @@ const Index = () => {
         </div>
       </nav>
 
-      {/* Hero Section with Prominent Search */}
-      <section className="relative py-32 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-6xl md:text-8xl font-bold text-black mb-8 leading-tight">
-            Find AI Agents
-            <br />
-            <span className="text-gray-600">That Solve</span>
-          </h1>
-          <p className="text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Simply type what you're trying to solve and we'll serve up a curated list of AI tools, 
-            agents, and LLMs perfect for your startup's needs.
-          </p>
-          
-          {/* Prominent Search Input - Google-style */}
-          <div className="max-w-2xl mx-auto mb-12">
-            <form onSubmit={handleSearch} className="relative">
-              <div className="relative flex items-center shadow-2xl rounded-full border border-gray-300 bg-white hover:shadow-3xl transition-shadow">
-                <Search className="absolute left-6 h-6 w-6 text-gray-400" />
-                <Input
-                  type="text"
-                  placeholder="What problem are you trying to solve? (e.g., automate customer support, process invoices, handle payroll)"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-16 pr-32 py-8 text-lg rounded-full border-0 focus:ring-0 focus:outline-none bg-transparent"
-                />
-                <Button 
-                  type="submit" 
-                  className="absolute right-3 rounded-full px-8 py-3 bg-black text-white hover:bg-gray-800 font-bold"
-                  disabled={!searchQuery.trim()}
-                >
-                  Search
-                </Button>
-              </div>
-            </form>
-            <p className="text-sm text-gray-500 mt-4">
-              Popular searches: Customer Support • Payroll • Tax Compliance • Document Processing
+      {/* Combined Hero & Agent Discovery Section */}
+      <section className="relative py-32 px-6 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          {/* Hero Content */}
+          <div className="max-w-4xl mx-auto text-center mb-20">
+            <div className="mb-8">
+              <Badge variant="secondary" className="px-4 py-2 text-sm bg-white text-black border border-gray-300">
+                The Control Layer for AI-Native Companies
+              </Badge>
+            </div>
+            <h1 className="text-6xl md:text-8xl font-bold text-black mb-8 leading-tight">
+              Find AI Agents
+              <br />
+              <span className="text-gray-600">That Solve</span>
+            </h1>
+            <p className="text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+              Simply type what you're trying to solve and we'll serve up a curated list of AI tools, 
+              agents, and LLMs perfect for your startup's needs. Deploy, orchestrate, and monetize AI agents across every team in your business.
+            </p>
+            
+            {/* Prominent Search Input - Google-style */}
+            <div className="max-w-2xl mx-auto mb-12">
+              <form onSubmit={handleSearch} className="relative">
+                <div className="relative flex items-center shadow-2xl rounded-full border border-gray-300 bg-white hover:shadow-3xl transition-shadow">
+                  <Search className="absolute left-6 h-6 w-6 text-gray-400" />
+                  <Input
+                    type="text"
+                    placeholder="What problem are you trying to solve? (e.g., automate customer support, process invoices, handle payroll)"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-16 pr-32 py-8 text-lg rounded-full border-0 focus:ring-0 focus:outline-none bg-transparent"
+                  />
+                  <Button 
+                    type="submit" 
+                    className="absolute right-3 rounded-full px-8 py-3 bg-black text-white hover:bg-gray-800 font-bold"
+                    disabled={!searchQuery.trim()}
+                  >
+                    Search
+                  </Button>
+                </div>
+              </form>
+              <p className="text-sm text-gray-500 mt-4">
+                Popular searches: Customer Support • Payroll • Tax Compliance • Document Processing
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" className="text-lg px-8 py-4 bg-black text-white hover:bg-gray-800 font-bold" asChild>
+                <Link to="/dashboard">
+                  Explore Agent Directory
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+              <Button size="lg" variant="outline" className="text-lg px-8 py-4 border-black text-black hover:bg-gray-100 font-bold">
+                Submit Your Agent
+              </Button>
+            </div>
+          </div>
+
+          {/* Value Proposition */}
+          <div className="text-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6 leading-tight">
+              Run Your AI Agents
+              <span className="text-gray-600"> Like Products</span>
+            </h2>
+            <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
+              OpSweet lets you deploy, orchestrate, and monetize AI agents across every team in your business. 
+              One platform. All your agents. Fully managed.
             </p>
           </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-lg px-8 py-4 bg-black text-white hover:bg-gray-800 font-bold" asChild>
-              <Link to="/dashboard">
-                Explore Agent Directory
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8 py-4 border-black text-black hover:bg-gray-100 font-bold">
-              Submit Your Agent
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Agent Discovery Section - Previous Hero Content */}
-      <section className="py-20 px-6 bg-gray-50">
-        <div className="max-w-7xl mx-auto text-center">
-          <div className="mb-8">
-            <Badge variant="secondary" className="px-4 py-2 text-sm bg-white text-black border border-gray-300">
-              The Control Layer for AI-Native Companies
-            </Badge>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-black mb-6 leading-tight">
-            Run Your AI Agents
-            <span className="text-gray-600"> Like Products</span>
-          </h2>
-          <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
-            OpSweet lets you deploy, orchestrate, and monetize AI agents across every team in your business. 
-            One platform. All your agents. Fully managed.
-          </p>
         </div>
       </section>
 
